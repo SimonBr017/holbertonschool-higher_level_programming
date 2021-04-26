@@ -14,10 +14,10 @@ int check_cycle(listint_t *list)
 
 	while (tmp1 && tmp2 && tmp2->next)
 	{
-		tmp1 = tmp1->next;
-		tmp2 = tmp2->next;
 		if (tmp1 == tmp2)
 			return (1);
+		tmp1 = tmp1->next;
+		tmp2 = tmp2->next->next;
 	}
 	return (0);
 }
