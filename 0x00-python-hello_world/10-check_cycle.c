@@ -11,11 +11,13 @@ int check_cycle(listint_t *list)
 
 	if (list == NULL)
 		return (0);
-
-	while (tmp1 && tmp2 && tmp2->next)
+	tmp2 = tmp2->next;
+	while (tmp1 != NULL && tmp2 != NULL && tmp2->next != NULL)
 	{
 		if (tmp1 == tmp2)
+		{
 			return (1);
+		}
 		tmp1 = tmp1->next;
 		tmp2 = tmp2->next->next;
 	}
