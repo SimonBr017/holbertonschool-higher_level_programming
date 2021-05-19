@@ -52,9 +52,8 @@ class SinglyLinkedList:
         new = Node(value)
         head = self.__head
 
-        while head is not None and head.next_node is not None:
-            head = head.next_node
-        while head.next_node.data < new.data:
+        while head is not None and head.next_node is not None and \
+                head.next_node.data < new.data:
             head = head.next_node
 
         if head is None:
