@@ -1,0 +1,60 @@
+=========================
+TEST 0-add_integer MODULE
+=========================
+
+Import module:
+>>> add_integer = __import__('0-add_integer').add_integer
+
+__________________________________________________________
+add two integer:
+>>> print(add_integer(1, 2))
+3
+
+__________________________________________________________
+add two int with b < 0:
+>>> print(add_integer(100, -2))
+98
+
+__________________________________________________________
+add two int with a< 0:
+>>> print(add_integer(-2, 100))
+98
+
+__________________________________________________________
+a is int b is None
+>>> print(add_integer(2))
+100
+
+__________________________________________________________
+a and b are None
+>>> print(add_integer(None))
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+__________________________________________________________
+
+a is float and b<0
+>>> print(add_integer(100.3, -2))
+98
+
+__________________________________________________________
+b is float and a<0
+>>> print(add_integer(-2, 100.3))
+98
+
+__________________________________________________________
+a is int b is str
+>>> print(add_integer(4, "School"))
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+
+__________________________________________________________
+b is int a is str
+>>> print(add_integer("School", 4))
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+
+__________________________________________________________
