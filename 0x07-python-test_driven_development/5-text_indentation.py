@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""unction that prints a text with 2 new lines 
+"""unction that prints a text with 2 new lines
 after each of these characters: ., ? and :"""
 
 
 def text_indentation(text):
-    string=""
+    string = ""
     if type(text) is not str:
         raise TypeError("text must be a string")
     i = 0
