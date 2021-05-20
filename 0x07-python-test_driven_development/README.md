@@ -19,3 +19,9 @@
 
     Prototype: def say_my_name(first_name, last_name=""):
     first_name and last_name must be strings otherwise, raise a TypeError exception with the message first_name must be a string or last_name must be a string
+
+4-print_square.py: Prototype: def print_square(size):
+size is the size length of the square
+size must be an integer, otherwise raise a TypeError exception with the message size must be an integer
+if size is less than 0, raise a ValueError exception with the message size must be >= 0
+if size is a float and is less than 0, raise a TypeError exception with the message size must be an integer
