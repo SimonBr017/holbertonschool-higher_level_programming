@@ -9,19 +9,14 @@ def text_indentation(text):
     There should be no space at the beginning or
     at the end of each printed line"""
 
-    string = ""
     if type(text) is not str:
         raise TypeError("text must be a string")
-    i = 0
+    leap = True
     for c in text:
-        if i == 0:
-            if c == ' ':
-                continue
-            else:
-                i = 1
-        if i == 1:
-            string += c
-        if c in ('.', '?', ':'):
-            string += "\n\n"
-            i = 0
-    print(string)
+        if not (c is ' ' and leap is True):
+            print(c, end="")
+            leap = False
+            if c in [':', '.', '?']:
+                print()
+                print()
+                leap = True
