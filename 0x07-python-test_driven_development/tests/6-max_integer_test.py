@@ -40,3 +40,13 @@ class TestMaxInteger(unittest.TestCase):
     def test_not_num(self):
         """test with only string"""
         self.assertAlmostEqual(max_integer(['a', 'b', 'c', 'd']), 'd')
+
+    def test_toomany(self):
+        """ Test with too many arguments """
+        with self.assertRaises(TypeError):
+            max_integer([1, -2, 6, -4], [3, 4, 5, -6])
+
+    def test_nonint(self):
+        """ Test with a non-int """
+        with self.assertRaises(TypeError):
+            max_integer([1, 2, "string", -4])
