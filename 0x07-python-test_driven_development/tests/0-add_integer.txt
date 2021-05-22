@@ -58,3 +58,7 @@ Traceback (most recent call last):
 TypeError: a must be an integer
 
 __________________________________________________________
+float over flow
+>>> print(add_integer(-2, 100.333333333333333333333333333333333333333333333333333333"))
+98
+
