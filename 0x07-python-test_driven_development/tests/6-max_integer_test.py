@@ -23,7 +23,7 @@ class TestMaxInteger(unittest.TestCase):
     def test_return(self):
         """test return value"""
         self.assertAlmostEqual(max_integer([1, 2, 3, 4]), 4)
-        self.assertAlmostEqual(max_integer([4, 1, 3, 2]), 4)
+        self.assertAlmostEqual(max_integer([4, 3, 2, 1]), 4)
 
     def test_negativ(self):
         """test with negative value"""
