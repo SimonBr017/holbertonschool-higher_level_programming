@@ -20,9 +20,12 @@ class TestMaxInteger(unittest.TestCase):
         """check if there is only one element"""
         self.assertAlmostEqual(max_integer([1]), 1)
 
-    def test_return(self):
-        """test return value"""
+    def test_returnMaxEnd(self):
+        """test return value with max at the end"""
         self.assertAlmostEqual(max_integer([1, 2, 3, 4]), 4)
+
+    def test_returnMaxBeg(self):
+        """test return value with max at the begining"""
         self.assertAlmostEqual(max_integer([4, 3, 2, 1]), 4)
 
     def test_negativ(self):
