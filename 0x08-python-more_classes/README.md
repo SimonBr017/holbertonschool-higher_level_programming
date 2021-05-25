@@ -1,0 +1,1 @@
+0-rectangle.py : empty class Rectangle that defines a rectangle
