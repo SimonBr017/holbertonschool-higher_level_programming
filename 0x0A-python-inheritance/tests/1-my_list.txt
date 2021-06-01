@@ -41,10 +41,3 @@ __________________________________________________________
 >>> my_list.append("test")
 >>> print(my_list)
 ['string', 'again', 'maj', 'test']
-
-__________________________________________________________
->>> my_list = MyList([1, "String", "Test", 2])
->>> my_list.print_sorted()
-Traceback (most recent call last):
-...
-TypeError: '<' not supported between instances of 'str' and 'int'
