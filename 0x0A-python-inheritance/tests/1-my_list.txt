@@ -32,3 +32,19 @@ unordered list and negative value:
 [1, 2, 3, 4, -5]
 >>> my_list.print_sorted()
 [-5, 1, 2, 3, 4]
+
+__________________________________________________________
+>>> my_list = MyList()
+>>> my_list.append("string")
+>>> my_list.append("again")
+>>> my_list.append("maj")
+>>> my_list.append("test")
+>>> print(my_list)
+['string', 'again', 'maj', 'test']
+
+__________________________________________________________
+>>> my_list = MyList([1, "String", "Test", 2])
+>>> my_list.print_sorted()
+Traceback (most recent call last):
+...
+TypeError: '<' not supported between instances of 'str' and 'int'
