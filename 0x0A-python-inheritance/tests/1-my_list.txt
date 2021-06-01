@@ -42,6 +42,9 @@ __________________________________________________________
 >>> print(my_list)
 ['string', 'again', 'maj', 'test']
 
+>>> my_list.print_sorted()
+['again', 'maj', 'string', 'test']
+
 >>> my_list = MyList()
 >>> my_list.print_sorted()
 []
@@ -49,3 +52,20 @@ __________________________________________________________
 >>> my_list.print_sorted(1)
 Traceback (most recent call last):
 TypeError: print_sorted() takes 1 positional argument but 2 were given
+
+>>> my_list = MyList()
+>>> my_list.append(1)
+>>> my_list.append(4)
+>>> my_list.append(2)
+>>> my_list.append(3)
+>>> my_list.append(5)
+>>> print(my_list)
+[1, 4, 2, 3, 5]
+
+>>> my_list[1] = 6
+>>> print(my_list)
+[1, 6, 2, 3, 5]
+
+>>> my_list.remove(6)
+>>> print(my_list)
+[1, 2, 3, 5]
