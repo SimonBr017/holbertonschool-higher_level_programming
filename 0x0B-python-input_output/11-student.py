@@ -24,4 +24,5 @@ class Student:
         return dict
 
     def reload_from_json(self, json):
-        self.__dict__ = json
+        for key in json.keys():
+            self.__dict__[key] = json[key]
