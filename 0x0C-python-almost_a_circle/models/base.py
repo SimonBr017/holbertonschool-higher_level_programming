@@ -45,9 +45,6 @@ class Base:
                 new_list.append(item.to_dictionary())
         with open(json_file, 'w') as f:
             f.write(cls.to_json_string(new_list))
-        if list_objs is None:
-            with open(json_file, 'w') as f:
-                f.write(cls.to_json_string(new_list))
 
     @classmethod
     def create(cls, **dictionary):
