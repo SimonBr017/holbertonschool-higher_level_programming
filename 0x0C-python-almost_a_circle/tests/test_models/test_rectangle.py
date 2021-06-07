@@ -192,19 +192,21 @@ class RectangleTests (unittest.TestCase):
     def test_rect_save_to_file(self):
         r12 = Rectangle(1, 2, 1, 1, 15)
         r13 = Rectangle(3, 4, 2, 2, 16)
-        r_list = [r12, r13]
-        Rectangle.save_to_file(r_list)
+        rect_list = [r12, r13]
+        Rectangle.save_to_file(rect_list)
 
         with open("Rectangle.json", "r") as file:
             reader = file.read()
             to_dict = [r12.to_dictionary(), r13.to_dictionary()]
             self.assertEqual(reader, json.dumps(to_dict))
 
-        r_list = []
-        Rectangle.save_to_file(r_list)
+        rect_list = []
+        Rectangle.save_to_file(rect_list)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
-        Rectangle.save_to_file(None)
+        
+        rect_list = None
+        Rectangle.save_to_file(rect_list)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
             
