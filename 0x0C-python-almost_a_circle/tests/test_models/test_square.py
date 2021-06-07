@@ -113,3 +113,25 @@ class SquareTests (unittest.TestCase):
         r11= Square.create(**{ 'id': 89,  'x': 2, 'y': 4 })
         self.assertEqual(print(r11.to_dictionary()),
             print("{'size': 1, 'x': 2, 'y': 4, 'id': 89}"))
+
+    def test_square_string(self):
+        with self.assertRaises(TypeError):
+            s12 = Square("1")
+        try:
+            s12 = Square("1")
+        except TypeError as exception:
+            self.assertEqual(exception.args[0], "width must be an integer")
+            
+        with self.assertRaises(TypeError):
+            s12 = Square(1, "2")
+        try:
+            s12 = Square(1, "2")
+        except TypeError as exception:
+            self.assertEqual(exception.args[0], "x must be an integer")
+            
+        with self.assertRaises(TypeError):
+            s12 = Square(1, 2, "3")
+        try:
+            s12 = Square(1, 2, "3")
+        except TypeError as exception:
+            self.assertEqual(exception.args[0], "y must be an integer")
