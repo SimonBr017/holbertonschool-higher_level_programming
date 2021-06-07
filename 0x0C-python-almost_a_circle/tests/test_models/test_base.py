@@ -7,7 +7,7 @@ import unittest
 
 class BaseTests (unittest.TestCase):
     """Test for class base"""
-    
+
     def test_baseId(self):
         """tests for class base"""
         b1 = Base()
@@ -18,15 +18,19 @@ class BaseTests (unittest.TestCase):
 
         b3 = Base()
         self.assertEqual(b3.id, 3)
-        
+
         b4 = Base(12)
         self.assertEqual(b4.id, 12)
-        
+
         b5 = Base()
         self.assertEqual(b5.id, 4)
-    
+
     def test_json_to(self):
         """test for to_json"""
         json_s = Base.to_json_string(None)
         self.assertEqual(json_s, "[]")
-        
+
+    def test_json_from(self):
+        """test for to_json"""
+        json_s = Base.from_json_string(None)
+        self.assertEqual(json_s, [])
