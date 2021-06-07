@@ -87,6 +87,13 @@ class RectangleTests (unittest.TestCase):
         self.assertEqual(Rectangle(5, 10).area(), 50)
 
     def test_display(self):
+        with self.assertRaises(TypeError):
+            r6 = Rectangle()
+        try:
+            r6 = Rectangle()
+        except TypeError as exception:
+            self.assertEqual(exception.args[0], "__init__() missing 2 required positional arguments: 'width' and 'height'")
+        
         r6 = Rectangle(2, 3)
         self.assertEqual(r6.display(), print("##\n##\n##"))
         
