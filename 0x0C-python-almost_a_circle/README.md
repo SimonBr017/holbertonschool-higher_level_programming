@@ -20,3 +20,24 @@ models/rectangle.py : class Rectangle that inherits from Base:
     If the input is not an integer, raise the TypeError exception with the message: <name of the attribute> must be an integer. Example: width must be an integer
     If width or height is under or equals 0, raise the ValueError exception with the message: <name of the attribute> must be > 0. Example: width must be > 0
     If x or y is under 0, raise the ValueError exception with the message: <name of the attribute> must be >= 0. Example: x must be >= 0
+
+public method def update(self, *args): that assigns an argument to each attribute:
+
+    1st argument should be the id attribute
+    2nd argument should be the width attribute
+    3rd argument should be the height attribute
+    4th argument should be the x attribute
+    5th argument should be the y attribute
+This type of argument is called a “no-keyword argument” - Argument order is super important.
+
+the public method def to_dictionary(self): that returns the dictionary representation of a Rectangle
+
+class Square that inherits from Rectangle:
+
+    In the file models/square.py
+    Class Square inherits from Rectangle
+    Class constructor: def __init__(self, size, x=0, y=0, id=None)::
+        Call the super class with id, x, y, width and height - this super call will use the logic of the __init__ of the Rectangle class. The width and height must be assigned to the value of size
+        You must not create new attributes for this class, use all attributes of Rectangle - As reminder: a Square is a Rectangle with the same width and height
+        All width, height, x and y validation must inherit from Rectangle - same behavior in case of wrong data
+    The overloading __str__ method should return [Square] (<id>) <x>/<y> - <size> - in our case, width or height
