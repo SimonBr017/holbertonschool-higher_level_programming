@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unit test for module base"""
+"""Unit test for module rectangle"""
 
 from logging import exception
 from models.rectangle import Rectangle
@@ -11,10 +11,10 @@ import json
 
 
 class RectangleTests (unittest.TestCase):
-    """Test for class base"""
+    """Test for class rectangle"""
     
     def test_baseId(self):
-        """tests for class base"""
+        """tests for class rectangle"""
         r1 = Rectangle(10, 2)
         self.assertEqual(r1.id, 6)
 
@@ -205,8 +205,8 @@ class RectangleTests (unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
         
-
-        Rectangle.save_to_file(None)
+        rect_list = None
+        Rectangle.save_to_file(rect_list)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
             

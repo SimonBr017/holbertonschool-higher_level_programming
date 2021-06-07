@@ -152,7 +152,8 @@ class SquareTests (unittest.TestCase):
         with open("Square.json", "r") as file:
             self.assertEqual(file.read(), '[]')
         
-        Square.save_to_file(None)
+        rect_list = None
+        Square.save_to_file(rect_list)
         with open("Square.json", "r") as file:
             self.assertEqual(file.read(), '[]')
             
