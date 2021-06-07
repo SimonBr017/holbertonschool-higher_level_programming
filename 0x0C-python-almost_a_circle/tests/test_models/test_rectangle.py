@@ -205,8 +205,8 @@ class RectangleTests (unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
         
-        rect_list = None
-        Rectangle.save_to_file(rect_list)
+
+        Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
             
