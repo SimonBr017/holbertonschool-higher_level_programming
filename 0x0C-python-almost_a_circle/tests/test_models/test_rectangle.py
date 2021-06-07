@@ -8,6 +8,8 @@ from models.base import Base
 import unittest
 import os
 import json
+from io import StringIO
+from contextlib import redirect_stdout
 
 
 class RectangleTests (unittest.TestCase):
@@ -91,28 +93,19 @@ class RectangleTests (unittest.TestCase):
         self.assertEqual(Rectangle(5, 10).area(), 50)
 
     def test_display(self):
-        with self.assertRaises(TypeError):
-            r6 = Rectangle()
-        try:
-            r6 = Rectangle()
-        except TypeError as exception:
-            self.assertEqual(exception.args[0], "__init__() missing 2 required positional arguments: 'width' and 'height'")
         
-        with self.assertRaises(TypeError):
-            r6 = Rectangle()
-        try:
-            r6 = Rectangle(2)
-        except TypeError as exception:
-            self.assertEqual(exception.args[0], "__init__() missing 1 required positional argument: 'height'")
+        r6 = Rectangle(2, 2)
+        stout = StringIO()
+        with redirect_stdout(stout):
+            r6.display()
+        out = stout.getvalue()
+        self.assertEqual(out, ("#" * 2 + "\n") * 2)
         
-        r6 = Rectangle(2, 3)
-        self.assertEqual(r6.display(), print("##\n##\n##"))
+        #r6 = Rectangle(2, 3, 1)
+        #self.assertEqual(r6.display(),print(" ##\n ##\n ##"))
         
-        r6 = Rectangle(2, 3, 1)
-        self.assertEqual(r6.display(),print(" ##\n ##\n ##"))
-        
-        r6 = Rectangle(2, 3, 2, 1)
-        self.assertEqual(r6.display(), print("\n  ##\n  ##\n   ##"))
+        #r6 = Rectangle(2, 3, 2, 1)
+        #self.assertEqual(r6.display(), print("\n  ##\n  ##\n   ##"))
 
     def test_str_(self):
         r7 = Rectangle(2, 3, id=7)
@@ -164,9 +157,9 @@ class RectangleTests (unittest.TestCase):
             print("{'height': 2, 'x': 3, 'y': 4, 'width': 1, 'id': 89}"))
 
     def test_to_dictionary(self):
-        r10 = Rectangle(2, 3, 1, 1, 90)
+        r10 = Rectangle(1, 2, 3, 4)
         self.assertEqual(print(r10.to_dictionary()),
-            print("{'x': 1, 'id': 90, 'height': 3, 'y': 1, 'width': 2}"))
+            print("{'x': 3, 'id': 1, 'height': 2, 'y': 4, 'width': 1}"))
 
     def test_rectangle_create(self):
         r11 = Rectangle.create(**{ 'id': 89 })
