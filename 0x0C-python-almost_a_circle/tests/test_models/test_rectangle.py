@@ -3,7 +3,11 @@
 
 from logging import exception
 from models.rectangle import Rectangle
+from models.square import Square
+from models.base import Base
 import unittest
+from os import path
+import json
 
 
 class RectangleTests (unittest.TestCase):
@@ -94,8 +98,18 @@ class RectangleTests (unittest.TestCase):
         except TypeError as exception:
             self.assertEqual(exception.args[0], "__init__() missing 2 required positional arguments: 'width' and 'height'")
         
+        with self.assertRaises(TypeError):
+            r6 = Rectangle()
+        try:
+            r6 = Rectangle(2)
+        except TypeError as exception:
+            self.assertEqual(exception.args[0], "__init__() missing 1 required positional argument: 'height'")
+        
         r6 = Rectangle(2, 3)
         self.assertEqual(r6.display(), print("##\n##\n##"))
+        
+        r6 = Rectangle(2, 3, 1)
+        self.assertEqual(r6.display(),print(" ##\n ##\n ##"))
         
         r6 = Rectangle(2, 3, 2, 1)
         self.assertEqual(r6.display(), print("\n  ##\n  ##\n   ##"))
@@ -106,3 +120,25 @@ class RectangleTests (unittest.TestCase):
 
         r8 = Rectangle(2, 3, 1, 2, 8)
         self.assertEqual(str(r8), "[Rectangle] (8) 1/2 - 2/3")
+
+    def test_update(self):
+        r9 = Rectangle(2, 3, 1, 1, 10)
+        r9.update(89)
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 6, 'x': 2, 'y': 2, 'width': 4, 'id': 89}"))
+
+        r9.update(89, 1)
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 6, 'x': 2, 'y': 2, 'width': 1, 'id': 89}"))
+
+        r9.update(89, 1, 2)
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 2, 'y': 2, 'width': 1, 'id': 89}"))
+
+        r9.update(89, 1, 2, 3)
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 2, 'width': 1, 'id': 89}"))
+
+        r9.update(89, 1, 2, 3, 4)
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 4, 'width': 1, 'id': 89}"))

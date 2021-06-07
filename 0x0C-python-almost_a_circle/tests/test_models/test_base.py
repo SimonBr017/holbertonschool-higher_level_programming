@@ -31,6 +31,6 @@ class BaseTests (unittest.TestCase):
         self.assertEqual(json_s, "[]")
 
     def test_json_from(self):
-        """test for to_json"""
+        """test for from_json"""
         json_s = Base.from_json_string(None)
         self.assertEqual(json_s, [])
