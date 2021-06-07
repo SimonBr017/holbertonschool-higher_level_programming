@@ -137,6 +137,11 @@ class SquareTests (unittest.TestCase):
             self.assertEqual(exception.args[0], "y must be an integer")
 
     def test_square_save_to_file(self):
+        rect_list = None
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        
         s13 = Square(1, 1, 1, 15)
         s14 = Square(2, 2, 2, 16)
         rect_list = [s13, s14]
@@ -152,10 +157,7 @@ class SquareTests (unittest.TestCase):
         with open("Square.json", "r") as file:
             self.assertEqual(file.read(), '[]')
         
-        rect_list = None
-        Square.save_to_file(None)
-        with open("Square.json", "r") as file:
-            self.assertEqual(file.read(), '[]')
+
             
     def test_load_from_file_square(self):
         s15 = Square(1, 2, 3, 4)
