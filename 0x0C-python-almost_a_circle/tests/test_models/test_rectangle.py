@@ -95,7 +95,6 @@ class RectangleTests (unittest.TestCase):
             r6 = Rectangle()
         try:
             r6 = Rectangle()
-            r6.display()
         except TypeError as exception:
             self.assertEqual(exception.args[0], "__init__() missing 2 required positional arguments: 'width' and 'height'")
         
@@ -103,18 +102,14 @@ class RectangleTests (unittest.TestCase):
             r6 = Rectangle()
         try:
             r6 = Rectangle(2)
-            r6.display()
         except TypeError as exception:
             self.assertEqual(exception.args[0], "__init__() missing 1 required positional argument: 'height'")
         
-        try:
-            r6 = Rectangle(2, 3)
-            r6.display()
-        except TypeError as exception:
-            self.assertEqual(exception.args[0], "__init__() missing 1 required positional argument: 'height'")
+        r6 = Rectangle(2, 3)
+        self.assertEqual(r6.display(), print("##\n##\n##"))
         
         r6 = Rectangle(2, 3, 1)
-        self.assertEqual(r6.display(), print(" ##\n ##\n ##"))
+        self.assertEqual(r6.display(),print(" ##\n ##\n ##"))
         
         r6 = Rectangle(2, 3, 2, 1)
         self.assertEqual(r6.display(), print("\n  ##\n  ##\n   ##"))
@@ -168,3 +163,33 @@ class RectangleTests (unittest.TestCase):
         self.assertEqual(print(r9.to_dictionary()),
             print("{'height': 2, 'x': 3, 'y': 4, 'width': 1, 'id': 89}"))
 
+    def test_to_dictionary(self):
+        r10 = Rectangle(2, 3, 1, 1, 90)
+        self.assertEqual(print(r10.to_dictionary()),
+            print("{'x': 1, 'id': 90, 'height': 3, 'y': 1, 'width': 2}"))
+
+    def test_rectangle_create(self):
+        r11 = Rectangle.create(**{ 'id': 89 })
+        self.assertEqual(print(r11.to_dictionary()),
+            print("{'height': 1, 'x': 0, 'y': 0, 'width': 1, 'id': 89}"))
+
+        r11 = Rectangle.create(**{ 'id': 89, 'width': 1 })
+        self.assertEqual(print(r11.to_dictionary()),
+            print("{'height': 1, 'x': 0, 'y': 0, 'width': 1, 'id': 89}"))
+
+        r11 = Rectangle.create(**{ 'id': 89, 'width': 1, 'height': 2 })
+        self.assertEqual(print(r11.to_dictionary()),
+            print("{'height': 2, 'x': 0, 'y': 0, 'width': 1, 'id': 89}"))
+
+        r11 = Rectangle.create(**{ 'id': 89, 'width': 1, 'height': 2, 'x': 3 })
+        self.assertEqual(print(r11.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 0, 'width': 1, 'id': 89}"))
+
+        r11= Rectangle.create(**{ 'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4 })
+        self.assertEqual(print(r11.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 4, 'width': 1, 'id': 89}"))
+
+    def test_rect_save_to_file(self):
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
