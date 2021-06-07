@@ -24,3 +24,9 @@ class BaseTests (unittest.TestCase):
         
         b5 = Base()
         self.assertEqual(b5.id, 4)
+    
+    def test_json_to(self):
+        """test for to_json"""
+        json_s = Base.to_json_string(None)
+        self.assertEqual(json_s, "[]")
+        
