@@ -6,7 +6,7 @@ from models.rectangle import Rectangle
 from models.square import Square
 from models.base import Base
 import unittest
-from os import path
+import os
 import json
 
 
@@ -190,6 +190,48 @@ class RectangleTests (unittest.TestCase):
             print("{'height': 2, 'x': 3, 'y': 4, 'width': 1, 'id': 89}"))
 
     def test_rect_save_to_file(self):
+        r12 = Rectangle(1, 2, 1, 1, 15)
+        r13 = Rectangle(3, 4, 2, 2, 16)
+        r_list = [r12, r13]
+        Rectangle.save_to_file(r_list)
+
+        with open("Rectangle.json", "r") as file:
+            reader = file.read()
+            to_dict = [r12.to_dictionary(), r13.to_dictionary()]
+            self.assertEqual(reader, json.dumps(to_dict))
+
+        r_list = []
+        Rectangle.save_to_file(r_list)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
         Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), '[]')
+            
+
+    def test_load_from_file(self):
+        r14 = Rectangle(1, 2, 3, 4)
+        r15 = Rectangle(5, 6)
+        list_rectangles_input = [r14, r15]
+
+        Rectangle.save_to_file(list_rectangles_input)
+
+        list_rectangles_output = Rectangle.load_from_file()
+
+        self.assertEqual(list_rectangles_input[0].to_dictionary(), list_rectangles_output[0].to_dictionary())
+        self.assertEqual(list_rectangles_input[1].to_dictionary(), list_rectangles_output[1].to_dictionary())
+
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+        finally:
+            self.assertEqual(Rectangle.load_from_file(), [])
+
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+        with open("Rectangle.json", 'a') as file:
+            pass
+        self.assertEqual(Rectangle.load_from_file(), [])
