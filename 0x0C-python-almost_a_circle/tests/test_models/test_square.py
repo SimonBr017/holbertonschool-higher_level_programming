@@ -135,3 +135,49 @@ class SquareTests (unittest.TestCase):
             s12 = Square(1, 2, "3")
         except TypeError as exception:
             self.assertEqual(exception.args[0], "y must be an integer")
+
+    def test_square_save_to_file(self):
+        s13 = Square(1, 1, 1, 15)
+        s14 = Square(2, 2, 2, 16)
+        rect_list = [s13, s14]
+        Square.save_to_file(rect_list)
+
+        with open("Square.json", "r") as file:
+            reader = file.read()
+            to_dict = [s13.to_dictionary(), s14.to_dictionary()]
+            self.assertEqual(reader, json.dumps(to_dict))
+
+        rect_list = []
+        Square.save_to_file(rect_list)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+        
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), '[]')
+            
+    def test_load_from_file_square(self):
+        s15 = Square(1, 2, 3, 4)
+        s16 = Square(5, 6)
+        list_square_input = [s15, s16]
+
+        Square.save_to_file(list_square_input)
+
+        list_square_output = Square.load_from_file()
+
+        self.assertEqual(list_square_input[0].to_dictionary(), list_square_output[0].to_dictionary())
+        self.assertEqual(list_square_input[1].to_dictionary(), list_square_output[1].to_dictionary())
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+        finally:
+            self.assertEqual(Square.load_from_file(), [])
+
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+        with open("Square.json", 'a') as file:
+            pass
+        self.assertEqual(Square.load_from_file(), [])
