@@ -142,3 +142,24 @@ class RectangleTests (unittest.TestCase):
         r9.update(89, 1, 2, 3, 4)
         self.assertEqual(print(r9.to_dictionary()),
             print("{'height': 2, 'x': 3, 'y': 4, 'width': 1, 'id': 89}"))
+        
+        r9.update(**{ 'id': 89 })
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 2, 'width': 1, 'id': 89}"))
+
+        r9.update(**{ 'id': 89, 'width': 1 })
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 2, 'width': 1, 'id': 89}"))
+
+        r9.update(**{ 'id': 89, 'width': 1, 'height': 2 })
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 2, 'width': 1, 'id': 89}"))
+
+        r9.update(**{ 'id': 89, 'width': 1, 'height': 2, 'x': 3 })
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 2, 'width': 1, 'id': 89}"))
+
+        r9.update(**{ 'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4 })
+        self.assertEqual(print(r9.to_dictionary()),
+            print("{'height': 2, 'x': 3, 'y': 4, 'width': 1, 'id': 89}"))
+
