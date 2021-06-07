@@ -100,13 +100,7 @@ class RectangleTests (unittest.TestCase):
             r6.display()
         out = stout.getvalue()
         self.assertEqual(out, ("#" * 2 + "\n") * 2)
-        
-        #r6 = Rectangle(2, 3, 1)
-        #self.assertEqual(r6.display(),print(" ##\n ##\n ##"))
-        
-        #r6 = Rectangle(2, 3, 2, 1)
-        #self.assertEqual(r6.display(), print("\n  ##\n  ##\n   ##"))
-
+                
     def test_str_(self):
         r7 = Rectangle(2, 3, id=7)
         self.assertEqual(str(r7), "[Rectangle] (7) 0/0 - 2/3")
@@ -158,8 +152,9 @@ class RectangleTests (unittest.TestCase):
 
     def test_to_dictionary(self):
         r10 = Rectangle(1, 2, 3, 4)
-        self.assertEqual(print(r10.to_dictionary()),
-            print("{'x': 3, 'id': 1, 'height': 2, 'y': 4, 'width': 1}"))
+        dic = {'x': 3, 'y': 4, 'id': 35, 'height': 2, 'width': 1}
+        with self.subTest():
+            self.assertEqual(r10.to_dictionary(), dic)
 
     def test_rectangle_create(self):
         r11 = Rectangle.create(**{ 'id': 89 })
