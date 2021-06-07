@@ -95,6 +95,7 @@ class RectangleTests (unittest.TestCase):
             r6 = Rectangle()
         try:
             r6 = Rectangle()
+            r6.display()
         except TypeError as exception:
             self.assertEqual(exception.args[0], "__init__() missing 2 required positional arguments: 'width' and 'height'")
         
@@ -102,14 +103,18 @@ class RectangleTests (unittest.TestCase):
             r6 = Rectangle()
         try:
             r6 = Rectangle(2)
+            r6.display()
         except TypeError as exception:
             self.assertEqual(exception.args[0], "__init__() missing 1 required positional argument: 'height'")
         
-        r6 = Rectangle(2, 3)
-        self.assertEqual(r6.display(), print("##\n##\n##"))
+        try:
+            r6 = Rectangle(2, 3)
+            r6.display()
+        except TypeError as exception:
+            self.assertEqual(exception.args[0], "__init__() missing 1 required positional argument: 'height'")
         
         r6 = Rectangle(2, 3, 1)
-        self.assertEqual(r6.display(),print(" ##\n ##\n ##"))
+        self.assertEqual(r6.display(), print(" ##\n ##\n ##"))
         
         r6 = Rectangle(2, 3, 2, 1)
         self.assertEqual(r6.display(), print("\n  ##\n  ##\n   ##"))
