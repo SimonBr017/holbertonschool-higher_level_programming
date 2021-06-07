@@ -101,6 +101,12 @@ class RectangleTests (unittest.TestCase):
         out = stout.getvalue()
         self.assertEqual(out, ("#" * 2 + "\n") * 2)
         
+        r6 = Rectangle(2, 2, 1, 2)
+        stout = StringIO()
+        with redirect_stdout(stout):
+            r6.display()
+        out = stout.getvalue()
+        self.assertEqual(out, "\n" * 2 + (" " * 1 + "#" * 2 + "\n") * 2)
         
         with self.assertRaises(TypeError):
             r6 = Rectangle()
@@ -160,7 +166,7 @@ class RectangleTests (unittest.TestCase):
 
     def test_to_dictionary(self):
         r10 = Rectangle(1, 2, 3, 4)
-        dic = {'x': 3, 'y': 4, 'id': 35, 'height': 2, 'width': 1}
+        dic = {'x': 3, 'y': 4, 'id': 36, 'height': 2, 'width': 1}
         with self.subTest():
             self.assertEqual(r10.to_dictionary(), dic)
 
