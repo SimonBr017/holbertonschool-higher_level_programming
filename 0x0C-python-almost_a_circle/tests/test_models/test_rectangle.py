@@ -100,6 +100,14 @@ class RectangleTests (unittest.TestCase):
             r6.display()
         out = stout.getvalue()
         self.assertEqual(out, ("#" * 2 + "\n") * 2)
+        
+        
+        with self.assertRaises(TypeError):
+            r6 = Rectangle()
+        try:
+            r6 = Rectangle().display()
+        except TypeError as exception:
+            self.assertEqual(exception.args[0], "__init__() missing 2 required positional arguments: 'width' and 'height'")
                 
     def test_str_(self):
         r7 = Rectangle(2, 3, id=7)
