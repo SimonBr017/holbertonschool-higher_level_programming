@@ -16,7 +16,7 @@ def main():
 
     cursor = connection_data_base.cursor()
 
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%'")
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
 
     query_rows = cursor.fetchall()
 
