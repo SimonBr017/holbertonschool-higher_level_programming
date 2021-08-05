@@ -17,7 +17,7 @@ def main():
 
     cursor = connection_data_base.cursor()
 
-    cursor.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
+    cursor.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%'")
 
     query_rows = cursor.fetchall()
 
