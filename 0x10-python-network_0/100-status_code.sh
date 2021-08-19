@@ -1,3 +1,3 @@
 #!/bin/bash
-# send a POST request with the content of a file
+# displays only the status code of the response.
 curl -s -o /dev/null -w "%{http_code}" "$1"
