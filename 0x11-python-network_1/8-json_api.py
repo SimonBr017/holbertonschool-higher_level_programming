@@ -7,7 +7,9 @@ with the letter as a parameter."""
 import requests
 import sys
 
+
 if __name__ == '__main__':
+
     if len(sys.argv) > 1:
         parameter_value = sys.argv[1]
     else:
@@ -23,4 +25,4 @@ if __name__ == '__main__':
         else:
             print("No result")
     except Exception:
-        print("Not a vald JSON")
+        print("Not a valid JSON")
