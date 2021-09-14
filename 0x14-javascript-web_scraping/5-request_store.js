@@ -14,10 +14,7 @@ request(url, function (error, response, body) {
   }
   fs.appendFile(process.argv[3], body, function (err) {
     if (err) {
-      console.log('append failed');
       console.error(err);
-    } else {
-      console.log('Done');
     }
   });
 });
